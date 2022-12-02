@@ -1,0 +1,30 @@
+﻿@page
+@model BugNet.Pages.IndexModel
+
+<h1>My Bugs</h1>
+
+<p>Undone items: @Model.UnDoneCount</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Desc.</th>
+            <th>Is Done</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bug in Model.BugList)
+        {
+            <tr>
+                <td>@bug.Id</td>
+                <td>@bug.Name</td>
+                <td>@bug.Description</td>
+                <td>@bug.IsDone</td>
+
+            </tr>
+        }
+      
+    </tbody>
+</table>
