@@ -1,3 +1,4 @@
+using BugNet.Data;
 using BugNet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,18 +7,19 @@ namespace BugNet.Pages;
 
 public class IndexModel : PageModel
 {
+    private readonly BugDbContext _db;
+
+    public IndexModel(BugDbContext db)
+    {
+        _db = db;
+    }
+
     public IList<Bug> BugList { get; set; }
     public int UnDoneCount { get; set; }
 
     public void OnGet()
     {
-        BugList = new List<Bug>
-        {
-            new Bug{ Id = 1,Name="Task1",IsDone=false},
-            new Bug{ Id = 2,Name="Task2",IsDone=false},
-            new Bug{ Id = 3,Name="Task3",IsDone=true},
-        };
-
-        UnDoneCount=BugList.Count(b=>b.IsDone==false);
+        BugList = _db.Bugs.ToList();
+        UnDoneCount = BugList.Count(b => b.IsDone == false);
     }
 }
