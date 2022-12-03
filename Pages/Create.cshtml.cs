@@ -1,5 +1,6 @@
 using BugNet.Data;
 using BugNet.Models;
+using BugNet.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -7,11 +8,11 @@ namespace BugNet.Pages;
 
 public class CreateModel : PageModel
 {
-    private readonly BugDbContext _db;
+    private readonly IBugService _bugService;
 
-    public CreateModel(BugDbContext db)
+    public CreateModel(IBugService bugService)
     {
-        _db = db;
+        _bugService = bugService;
     }
 
     [BindProperty]
@@ -21,14 +22,12 @@ public class CreateModel : PageModel
     public string Description { get; set; }
     public IActionResult OnPost()
     {
-        _db.Bugs.Add(new Bug
+        _bugService.Create(new Bug
         {
             Name = Name,
             Description = Description,
-            IsDone=false
+            IsDone = false
         });
-
-        _db.SaveChanges();
 
         TempData["message"] = "New bug created!";
 
