@@ -24,7 +24,7 @@
                 <td>@bug.Description</td>
                 <td>@bug.IsDone</td>
                 <td>
-                    <a >
+                    <a asp-page="./edit" asp-route-id="@bug.Id" class="btn btn-primary">Edit</a>
                 </td>
             </tr>
         }
