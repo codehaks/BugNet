@@ -30,6 +30,8 @@ public class CreateModel : PageModel
 
         _db.SaveChanges();
 
+        TempData["message"] = "New bug created!";
+
         return RedirectToPage("./index");
     }
 }
