@@ -4,7 +4,7 @@
 
 <h1>My Bugs</h1>
 
-<a asp-page="./create"  class="btn btn-success">Create</a>
+<a asp-page="./create" class="btn btn-success">Create</a>
 
 @if (TempData["message"] is not null)
 {
@@ -31,18 +31,11 @@
                 <td>@bug.IsDone</td>
                 <td>
                     <a asp-page="./edit" asp-route-id="@bug.Id" class="btn btn-primary">Edit</a>
-
-                    <feature name="@BugNet.FeatureFlags.DeleteBugs">
-                        <a asp-page="./delete" asp-route-id="@bug.Id" class="btn btn-danger">Delete</a>
-                    </feature>
-        
-                      
-         
-                    
+                    <a asp-page="./delete" asp-route-id="@bug.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
-      
+
     </tbody>
 </table>
 
