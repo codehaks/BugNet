@@ -1,6 +1,8 @@
 using BugNet.Data;
 using BugNet.Service;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.FeatureManagement;
 using System;
 using System.Diagnostics;
 
@@ -15,9 +17,12 @@ builder.Services.AddDbContext<BugDbContext>(options =>
 });
 
 builder.Services.AddScoped<IBugService, BugService>();
+builder.Services.AddFeatureManagement();
 
 
 var app = builder.Build();
-app.UseStaticFiles();
+
+app.UseMiddlewareForFeature<StaticFileMiddleware>("staticfiles");
+//app.UseStaticFiles();
 app.MapRazorPages();
 app.Run();

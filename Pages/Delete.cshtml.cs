@@ -2,9 +2,11 @@ using BugNet.Data;
 using BugNet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.FeatureManagement.Mvc;
 
 namespace BugNet.Pages;
 
+[FeatureGate("deletebugs")]
 public class DeleteModel : PageModel
 {
     private readonly BugDbContext _db;

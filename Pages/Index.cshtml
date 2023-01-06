@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.FeatureManagement.AspNetCore
 @model BugNet.Pages.IndexModel
 
 <h1>My Bugs</h1>
@@ -30,7 +31,14 @@
                 <td>@bug.IsDone</td>
                 <td>
                     <a asp-page="./edit" asp-route-id="@bug.Id" class="btn btn-primary">Edit</a>
-                    <a asp-page="./delete" asp-route-id="@bug.Id" class="btn btn-danger">Delete</a>
+
+                    <feature name="@BugNet.FeatureFlags.DeleteBugs">
+                        <a asp-page="./delete" asp-route-id="@bug.Id" class="btn btn-danger">Delete</a>
+                    </feature>
+        
+                      
+         
+                    
                 </td>
             </tr>
         }
