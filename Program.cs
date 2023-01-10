@@ -24,10 +24,7 @@ if (app.Environment.IsProduction())
     app.UseStatusCodePagesWithReExecute("/code/{0}");
     app.UseExceptionHandler("/error");
 }
-else
-{
-    
-}
+
 
 app.UseStaticFiles();
 app.MapRazorPages();
