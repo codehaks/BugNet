@@ -19,9 +19,10 @@ var app = builder.Build();
 app.Logger.LogInformation("This is a test log!"); 
 
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsProduction())
 {
-    app.UseDeveloperExceptionPage();
+    app.UseStatusCodePagesWithReExecute("/code/{0}");
+    app.UseExceptionHandler("/error");
 }
 else
 {
