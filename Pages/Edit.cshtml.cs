@@ -2,7 +2,6 @@ using BugNet.Data;
 using BugNet.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace BugNet.Pages;
 
 public class EditModel : PageModel
@@ -17,8 +16,10 @@ public class EditModel : PageModel
     [BindProperty]
     public Bug? SelectedBug { get; set; }
 
-    public void OnGet(int id)
+    public void OnGet(BugId id)
     {
+        ArgumentOutOfRangeException.ThrowIfNegative(id);
+        
         SelectedBug = _db.Bugs.Find(id);
     }
 
